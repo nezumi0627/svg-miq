@@ -1,30 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
     <style>
-        .time-text {
-            font-family: Arial, sans-serif;
-            font-size: 48px;
-            fill: #2196F3;
+        .clock-face {
+            fill: none;
+            stroke: #2196F3;
+            stroke-width: 4;
+        }
+        
+        .hand {
+            transform-origin: center;
+            stroke: #2196F3;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+        
+        .hour-hand {
+            animation: rotate 43200s linear infinite;
+        }
+        
+        .minute-hand {
+            animation: rotate 3600s linear infinite;
+        }
+        
+        .second-hand {
+            stroke: #FF4081;
+            stroke-width: 2;
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .marker {
+            stroke: #2196F3;
+            stroke-width: 2;
         }
     </style>
+
+    <circle cx="200" cy="200" r="150" class="clock-face"/>
     
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timeString = `${hours}:${minutes}:${seconds}`;
-            
-            const timeElement = document.getElementById('current-time');
-            timeElement.textContent = timeString;
-        }
-
-        window.onload = function() {
-            updateTime();
-            setInterval(updateTime, 1000);
-        }
-    </script>
-
-    <text id="current-time" x="50%" y="50%" text-anchor="middle" class="time-text">00:00:00</text>
+    <!-- 時間マーカー -->
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(0 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(30 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(60 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(90 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(120 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(150 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(180 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(210 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(240 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(270 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(300 200 200)"/>
+    <line x1="200" y1="60" x2="200" y2="80" class="marker" transform="rotate(330 200 200)"/>
+    
+    <!-- 時計の針 -->
+    <line x1="200" y1="200" x2="200" y2="120" class="hand hour-hand"/>
+    <line x1="200" y1="200" x2="200" y2="100" class="hand minute-hand"/>
+    <line x1="200" y1="200" x2="200" y2="90" class="hand second-hand"/>
+    
+    <!-- 中心点 -->
+    <circle cx="200" cy="200" r="5" fill="#2196F3"/>
 </svg>
